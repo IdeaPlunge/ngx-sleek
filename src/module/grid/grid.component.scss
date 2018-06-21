@@ -1,13 +1,81 @@
-.title{
-  font-size: 2em;
+.button {
+  height: 40px !important;
+  width: 40px !important;
+  color: #555;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.highlight{
-  background-color: red;
-  opacity: 0.5;
+.button-inactive {
+  height: 40px !important;
+  width: 40px !important;
+  color: #555;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.description{
-  color: grey;
-  font-size: 1em;
+.button-active {
+  height: 40px !important;
+  width: 40px !important;
+  color: #fff;
+  background-color: #008cf7 !important;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+// mat-icon {
+//   height: 20px;
+//   width: 20px;
+// }
+
+.footer-wrapper {
+  padding-top: 3%;
+}
+
+.mat-raised-button[disabled][disabled] {
+  min-width: 0px !important;
+}
+
+.mat-raised-button {
+  min-width: 0px !important;
+}
+
+::ng-deep .mat-button-wrapper .mat-icon {
+  margin-left: -0.7vw;
+  margin-top: -0.7vh;
+}
+
+table {
+  height: 100%;
+  width: 100%;
+  border-spacing: 0px !important;
+  color: #908b8b; // overflow: auto;
+}
+
+.ngx-table-wrapper {
+  padding: 2%;
+  background: white;
+  overflow: auto;
+}
+
+// optional via input
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid #eae1e1;
+  height: 7vh;
+}
+
+// optional via input
+tr:nth-child(1) {
+  background: #eff0f6;
+  position: fixed;
+}
+
+.row-click-wrapper {
+  // background: red;
+  width: 5px !important;
+  cursor: pointer;
 }
