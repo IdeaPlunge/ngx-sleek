@@ -1,0 +1,22 @@
+.search-wrapper {
+    position: relative;
+    height: 5vh;
+    width: 32vw;
+    background: #fff;
+}
+
+input {
+    height: 100%;
+    width: 80%;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    outline: none !important ;
+    padding-left: 12%;
+}
+
+// mat-icon.search-icon {
+//     position: absolute;
+//     color: #b5adad;
+//     top: 1.2vh;
+//     left: 1.7vw;
+// }
