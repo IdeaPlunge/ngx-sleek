@@ -1,0 +1,35 @@
+{
+  "generator-ngx-library": {
+    "version": "6.1.0",
+    "authorName": "ideaplunge",
+    "authorEmail": "girish@ideaplunge.com",
+    "githubUsername": "ygchander",
+    "githubRepoName": "ngx-sleek",
+    "projectName": "ngx-sleek",
+    "projectVersion": "0.0.1",
+    "projectDescription": "Sleek Angular Components",
+    "projectKeywords": [
+      "angular components dashboard web responsive"
+    ],
+    "ngVersion": "6.0.0",
+    "ngModules": [
+      "core",
+      "common"
+    ],
+    "otherDependencies": [],
+    "additionalPackageFiles": [],
+    "dependenciesRange": "^",
+    "ngPrefix": "slk",
+    "testingFramework": "karma",
+    "useGreenkeeper": true,
+    "useCompodoc": true,
+    "enforceNgGitCommitMsg": true,
+    "exclusions": [
+      "demo/src/jestGlobalMocks.ts",
+      "demo/src/setupJest.ts",
+      "config/jestGlobalMocks.ts",
+      "config/setupJest.ts"
+    ],
+    "deleteExclusions": []
+  }
+}
