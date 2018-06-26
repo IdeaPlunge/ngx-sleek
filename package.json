@@ -28,6 +28,7 @@
   "dependencies": {
     "@angular/common": "6.0.0",
     "@angular/core": "6.0.0",
+    "@angular/flex-layout": "^6.0.0-beta.16",
     "@angular/forms": "^6.0.0",
     "rxjs-compat": "^6.2.1"
   },

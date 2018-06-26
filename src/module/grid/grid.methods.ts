@@ -47,3 +47,5 @@ export function partition(dataSet: any[], column: string, low: number, high: num
 
     return i;
 }
+
+// export function reverseQuickSort(dataSet: any[], column: string)

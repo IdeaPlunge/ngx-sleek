@@ -1,61 +1,76 @@
-<div class="grid-component-wrapper">
+<div fxLayout="column" fxFlexFill>
 
-  <div *ngIf="searchRequired" class="search-component-wrapper">
+  <div fxFlex="10" fxLayout="row" *ngIf="searchRequired">
 
-      <app-search class="search-component" (filterTable)="onFiltering($event)"></app-search>
+      <div fxFlex></div>
+
+      <app-search (filterTable)="onFiltering($event)"></app-search>
 
   </div>
 
-  <div class="ngx-table-wrapper" (scroll)="onScroll($event)">
 
-      <table #table>
+  <div fxFlex="70" fxFlexFill>
 
-          <tr>
-              <th *ngFor="let column of columns">
-                  <span *ngIf="column != ''">{{ column }}</span>
-                  <span *ngIf="column == ''" class="row-click-wrapper">
-                      &nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-              </th>
-          </tr>
+      <div fxFlexFill class="ngx-table-wrapper" (scroll)="onScroll($event)">
 
-          <tr *ngFor="let data of dataSource; let i = index;" #ngForChanges>
-              <td *ngFor="let column of columns; let last = last;">
-                 <span *ngIf="column != ''">
-                     {{ data[column] }}
-                 </span> 
-                 <span 
-                 *ngIf="column == ''" 
-                 class="row-click-wrapper" 
-                 (click)="onRowClick(this, i, last)">
-                      {{ data[column] }}
-                 </span>
-              </td>
-          </tr>
+          <table #table>
 
-      </table>
-      
+              <tr>
+
+                  <th *ngFor="let column of columns">
+
+                      <span *ngIf="column != ''">{{ column }}</span>
+                      <span *ngIf="column == ''" class="row-click-wrapper">
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                  </th>
+
+              </tr>
+
+              <tr *ngFor="let data of dataSource; let i = index;" #ngForChanges>
+
+                  <td *ngFor="let column of columns; let last = last;">
+
+                     <span *ngIf="column != ''">
+                         {{ data[column] }}
+                     </span> 
+                     <span 
+                     *ngIf="column == ''" 
+                     class="row-click-wrapper" 
+                     (click)="onRowClick(this, i, last)">
+                          {{ data[column] }}
+                     </span>
+
+                  </td>
+
+              </tr>
+
+          </table>
+
+      </div>
+
   </div>
 
 
+  <div fxFlex="10" fxLayout="row" fxLayoutAlign="end" class="footer-wrapper" *ngIf="pagination">
 
-  <div class="footer-wrapper" *ngIf="pagination">
-
-      <div>
-          <button [disabled]="selectedPage === 1" (click)="onNavLeft()" class="button">
+      <div fxFlex="5" fxLayoutAlign="end">
+          <button mat-raised-button [disabled]="selectedPage === 1" (click)="onNavLeft()" class="button">
+              <!-- <mat-icon>chevron_left</mat-icon> -->
               <span> < </span>
           </button>
       </div>
 
-      <div *ngFor="let page of totalPages">
+      <div fxFlex="5" fxLayoutAlign="end" *ngFor="let page of totalPages">
           <button (click)="selectedPage = page; onPageChange(page)" [ngClass]="{'button-active': selectedPage === page, 'button-inactive': selectedPage !== page}"
               id="button-{{page}}">
               {{ page }}
           </button>
       </div>
 
-      <div>
+      <div fxFlex="5" fxLayoutAlign="end">
           <button [disabled]="selectedPage === actualPages" (click)="onNavRight()" class="button">
+              <!-- <mat-icon>chevron_right</mat-icon> -->
               <span> > </span>
           </button>
       </div>
