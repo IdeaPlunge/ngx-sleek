@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Export module's public API
 import { NgxSearchComponent } from './grid/search/search.component';
@@ -11,8 +10,7 @@ import { NgxGridService } from './grid/grid.service';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    FlexLayoutModule
+    FormsModule
   ],
   exports: [
     NgxGridComponent,
