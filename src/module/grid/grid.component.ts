@@ -53,7 +53,7 @@ export class NgxGridComponent implements
   // row should be clickable or not
   @Input() rowClickable: boolean;
   // data for the table
-  @Input() tableData: TableDataModel;
+  @Input() tableData: any;
   // number of pages
   @Input() totalPages: Array<number>;
   // is sorting required at client
