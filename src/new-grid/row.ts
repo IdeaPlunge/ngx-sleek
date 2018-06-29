@@ -147,7 +147,7 @@ function extractCellTemp(that: any, column: any): TemplateRef<any> {
     selector: '[slkRowDef]'
 })
 export class SlkRowDefDirective<T> extends BaseRowDef implements OnChanges {
-    @Input('slkRowDef') slkRowDef: any;
+    @Input('slkRowDefColumns') slkRowDefColumns: any;
     @Input() columns: any;
     /**
      * Function that should return true if this row template should be used for the provided index
@@ -163,7 +163,7 @@ export class SlkRowDefDirective<T> extends BaseRowDef implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         super.ngOnChanges(changes);
-        this.columns = this.slkRowDef;
+        this.columns = this.slkRowDefColumns;
         // console.log('appRowDefColumns1', this.appRowDef);
     }
 }
