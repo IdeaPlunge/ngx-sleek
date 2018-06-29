@@ -10,6 +10,7 @@ import { HomeComponent } from './home.component';
         CommonModule,
         LibModule.forRoot(),
         HomeRoutingModule,
+        LibModule
     ],
     declarations: [HomeComponent],
 })

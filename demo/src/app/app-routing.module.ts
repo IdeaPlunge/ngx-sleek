@@ -7,10 +7,10 @@ const routes: Routes = [
         redirectTo: 'home',
         pathMatch: 'full'
     },
-    {
-        path: 'getting-started',
-        loadChildren: 'app/getting-started/getting-started.module#GettingStartedModule'
-    }
+    // {
+    //     path: 'getting-started',
+    //     loadChildren: 'app/getting-started/getting-started.module#GettingStartedModule'
+    // }
 ];
 
 @NgModule({

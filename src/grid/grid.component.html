@@ -1,11 +1,5 @@
 <div class="grid-component-wrapper">
 
-  <div *ngIf="searchRequired" class="search-component-wrapper">
-
-      <app-search class="search-component" (filterTable)="onFiltering($event)"></app-search>
-
-  </div>
-
   <div class="ngx-table-wrapper" (scroll)="onScroll($event)">
 
       <table #table>

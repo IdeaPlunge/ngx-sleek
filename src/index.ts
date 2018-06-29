@@ -1,1 +1,2 @@
-export * from './module/lib.module';
+export * from './grid';
+export * from './new-grid';

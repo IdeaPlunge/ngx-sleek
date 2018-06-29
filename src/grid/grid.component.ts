@@ -18,7 +18,7 @@ import {
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { SearchModel } from './search/search.model';
+// import { SearchModel } from './search/search.model';
 
 import * as methods from './grid.methods';
 
@@ -93,7 +93,7 @@ export class NgxGridComponent implements
 
   private changeDetectorRef: ChangeDetectorRef;
   // create a bucket for all the letter and have reference to the row index
-  searchBucket: SearchModel[] = [];
+  searchBucket: any[] = [];
   // data to be displayed in the current page, this will restore the data when user is nomore using search
   dataOnCurrentPage: any[];
 
@@ -316,7 +316,7 @@ export class NgxGridComponent implements
       newColumn.splice(-1, 1);
     }
 
-    let searchBucketObj: SearchModel;
+    let searchBucketObj: any;
     // loop through the data source array to get all the words stored in search bucket
     // make a copy of copied data source
     const copiedRealDataSource = [...this.realDataSource];

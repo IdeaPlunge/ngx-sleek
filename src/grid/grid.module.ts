@@ -3,9 +3,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 // Export module's public API
-import { NgxSearchComponent } from './grid/search/search.component';
-import { NgxGridComponent } from './grid/grid.component';
-import { NgxGridService } from './grid/grid.service';
+import { NgxGridComponent } from './grid.component';
+import { NgxGridService } from './grid.service';
 
 @NgModule({
   imports: [
@@ -13,18 +12,16 @@ import { NgxGridService } from './grid/grid.service';
     FormsModule
   ],
   exports: [
-    NgxGridComponent,
-    NgxSearchComponent
+    NgxGridComponent
   ],
   declarations: [
-    NgxGridComponent,
-    NgxSearchComponent
+    NgxGridComponent
   ]
 })
-export class LibModule {
+export class GridModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: LibModule,
+      ngModule: GridModule,
       providers: [NgxGridService]
     };
   }
