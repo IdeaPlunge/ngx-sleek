@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/ygchander/ngx-sleek/issues"
   },
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "gulp build",
     "test": " gulp test",
@@ -27,11 +27,9 @@
   },
   "dependencies": {
     "@angular/cdk": "^6.3.1",
-    "@angular/common": "6.0.0",
-    "@angular/core": "6.0.0",
-    "@angular/forms": "^6.0.0",
-    "rxjs": "^6.2.1",
-    "rxjs-compat": "^6.2.1"
+    "@angular/common": "6.0.1",
+    "@angular/core": "6.0.1",
+    "rxjs": "^6.1.0"
   },
   "devDependencies": {
     "@angular/animations": "6.0.0",

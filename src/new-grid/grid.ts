@@ -24,11 +24,8 @@ import {
     Renderer2
 } from '@angular/core';
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { of as observableOf } from 'rxjs/observable/of';
+
+import { Subject, Subscription, Observable, BehaviorSubject, of as observableOf } from 'rxjs';
 
 // import {
 //     getTableUnknownDataSourceError,
@@ -484,7 +481,7 @@ export class SlkTableComponent<T> implements AfterContentChecked, CollectionView
 
         this._renderChangeSubscription = dataStream
             .pipe(takeUntil(this._onDestroy))
-            .subscribe(data => {
+            .subscribe((data: any) => {
                 this._data = data || [];
                 this.renderRows();
             });
