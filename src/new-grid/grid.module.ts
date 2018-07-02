@@ -24,6 +24,7 @@ import {
 } from './cell';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DirectiveService } from './directive-service';
 
 const EXPORTED_DECLARATIONS = [
     SlkTableComponent,
@@ -49,6 +50,7 @@ const EXPORTED_DECLARATIONS = [
 @NgModule({
     imports: [CommonModule],
     exports: EXPORTED_DECLARATIONS,
-    declarations: EXPORTED_DECLARATIONS
+    declarations: EXPORTED_DECLARATIONS,
+    providers: [DirectiveService]
 })
 export class SlkGridModule { }

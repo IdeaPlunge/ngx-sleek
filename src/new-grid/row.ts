@@ -12,9 +12,11 @@ import {
     Directive,
     Input,
     Renderer2,
-    ElementRef
+    ElementRef,
+    OnInit
 } from '@angular/core';
 import { SlkColumnDefDirective, SlkCellDef } from './cell';
+import { DirectiveService } from './directive-service';
 
 /**
  * The row template that can be used by the slk-table.
@@ -61,16 +63,6 @@ export abstract class BaseRowDef implements OnChanges {
     extractCellTemplate(column: SlkColumnDefDirective): TemplateRef<any> {
         // console.log('column from row', column, this instanceof SlkHeaderRowDefDirective);
         return extractCellTemp(this, column);
-        // if (this instanceof SlkHeaderRowDefDirective) {
-        //     // console.log('1st');
-        //     return column.headerCell.template;
-        // } if (this instanceof SlkFooterRowDefDirective) {
-        //     // console.log('2nd');
-        //     return column.footerCell.template;
-        // } else {
-        //     // console.log('3rd');
-        //     return column.cell.template;
-        // }
     }
 
 }
@@ -85,11 +77,15 @@ export class SlkHeaderRowDefBase extends BaseRowDef { }
 @Directive({
     selector: '[slkHeaderRowDef]',
 })
-export class SlkHeaderRowDefDirective extends SlkHeaderRowDefBase implements OnChanges {
+export class SlkHeaderRowDefDirective extends SlkHeaderRowDefBase implements OnChanges, OnInit {
     @Input('slkHeaderRowDef') slkHeaderRowDef: any;
     @Input() columns: any;
 
-    constructor(template: TemplateRef<any>, _differs: IterableDiffers) {
+    constructor(
+        template: TemplateRef<any>,
+        _differs: IterableDiffers,
+        private directiveService: DirectiveService
+    ) {
         super(template, _differs);
         // console.log('appHeaderRowDef', this.appHeaderRowDef);
     }
@@ -99,7 +95,10 @@ export class SlkHeaderRowDefDirective extends SlkHeaderRowDefBase implements OnC
     ngOnChanges(changes: SimpleChanges): void {
         super.ngOnChanges(changes);
         this.columns = this.slkHeaderRowDef;
-        // console.log('appHeaderRowDef1', this.appHeaderRowDef);
+    }
+
+    ngOnInit() {
+        this.directiveService.setTotalColumns(this.columns);
     }
 }
 

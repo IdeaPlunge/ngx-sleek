@@ -1,4 +1,4 @@
-import { SortDirection } from '@app/shared/sort/sort-header';
+import { SortDirection } from './sort-header';
 import {
     Directive,
     OnChanges,

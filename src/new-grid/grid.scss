@@ -12,11 +12,6 @@
     border-bottom: 0.1vh solid #e2d9d9;
 }
 
-/**
-Calculate width of each column 
-if header is not aligned well. get the width
-from renderer and append same width property for headers
-*/
 .table-slk-grid {
     width: 96%;
     margin: 2%;
@@ -39,13 +34,13 @@ from renderer and append same width property for headers
     tbody {
         td {
             float: left;
-            width: 33%;
+            // width: 33%;
         }
     }
     thead {
         th {
             float: left;
-            width: 33%;
+            // width: 33%;
         }
     }
 }

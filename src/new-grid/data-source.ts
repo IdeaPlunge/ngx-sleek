@@ -7,7 +7,7 @@ import {
     merge,
     combineLatest
 } from 'rxjs';
-import { SlkSortDirective, Sort } from './sort/sort';
+import { SlkSortDirective, Sort } from '../sort/sort';
 import { map } from 'rxjs/operators';
 import * as methods from './grid-methods';
 

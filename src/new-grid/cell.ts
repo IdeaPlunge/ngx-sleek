@@ -4,7 +4,12 @@ import {
     Input,
     ContentChild,
     ElementRef,
+    OnInit,
+    Renderer2,
 } from '@angular/core';
+import { Subject } from 'rxjs';
+import { DirectiveService } from './directive-service';
+import { takeUntil } from 'rxjs/operators';
 
 /** Base interface for a cell definition. */
 export interface SlkCellDef {
@@ -78,13 +83,26 @@ export class BaseSlkCell {
 @Directive({
     selector: 'slkHeaderCell, th[slkHeaderCell]'
 })
-export class SlkHeaderCellDirective extends BaseSlkCell {
-
+export class SlkHeaderCellDirective extends BaseSlkCell implements OnInit {
+    destroy = new Subject<boolean>();
     constructor(
         columnDef: SlkColumnDefDirective,
-        elementRef: ElementRef
+        private elementRef: ElementRef,
+        private directiveService: DirectiveService,
+        private renderer: Renderer2
     ) {
         super(columnDef, elementRef);
+    }
+
+    ngOnInit() {
+        this.directiveService.totalColumnsAsObservable
+            .pipe(takeUntil(this.destroy))
+            .subscribe((cols: number) => {
+                const totalColumns = 100 / cols;
+                this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${totalColumns}%`);
+                this.destroy.next(true);
+            });
+
     }
 }
 
@@ -102,11 +120,25 @@ export class SlkFooterCellDirective extends BaseSlkCell {
 @Directive({
     selector: 'slkCell, td[slkCell]'
 })
-export class SlkCellDirective extends BaseSlkCell {
+export class SlkCellDirective extends BaseSlkCell implements OnInit {
+    destroy = new Subject<boolean>();
     constructor(
         columnDef: SlkColumnDefDirective,
-        elementRef: ElementRef
+        private elementRef: ElementRef,
+        private directiveService: DirectiveService,
+        private renderer: Renderer2
     ) {
         super(columnDef, elementRef);
+    }
+
+    ngOnInit() {
+        this.directiveService.totalColumnsAsObservable
+            .pipe(takeUntil(this.destroy))
+            .subscribe((cols: number) => {
+                const totalColumns = 100 / cols;
+                this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${totalColumns}%`);
+                this.destroy.next(true);
+            });
+
     }
 }
