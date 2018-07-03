@@ -43,7 +43,7 @@ export class SlkSortHeaderComponent implements OnDestroy, OnInit {
         changeDetectorRef: ChangeDetectorRef,
         @Optional() public _sort: SlkSortDirective,
         @Optional() public _slkColumnDef: SlkColumnDefDirective
-    ) { /** console.log('test from sort'); */ }
+    ) { /** console.log('sort'); */ }
 
     ngOnInit() {
         if (!this.id && this._slkColumnDef) {
@@ -56,10 +56,6 @@ export class SlkSortHeaderComponent implements OnDestroy, OnInit {
         this._rerenderSubscription.unsubscribe();
     }
 
-    /** Triggers the sort on this sort header and removes the indicator hint. */
-    _handleClick() {
-        this._sort.sort(this);
-    }
     /** Returns the animation state for the arrow direction. */
     _isSorted() {
         // console.log('isSorted');

@@ -84,9 +84,6 @@ export const SLK_TABLE_TEMPLATE = `
     <ng-container slkFooterRowOutlet></ng-container>
 `;
 
-/** Interface used to conveniently type the possible context interfaces for the render row. */
-// export interface RowContext<T> extends SlkCellOutletRowContext<T> { }
-
 /**
  * Class used to conveniently type the embedded view ref for rows with a context
  */
@@ -360,12 +357,9 @@ export class SlkTableComponent<T> implements AfterContentChecked, CollectionView
     private _getRenderRowsForData(
         data: T, dataIndex: number
     ): RenderRow<T>[] {
-        // console.log('data && dataIndex', data, dataIndex);
         const rowDefs = this._getRowDefs(data, dataIndex);
-        // console.log('rowDefs', rowDefs);
 
         return rowDefs.map((rowDef: any) => {
-            // console.log('rowDef', { data, rowDef, dataIndex });
             return { data, rowDef, dataIndex };
         });
     }
@@ -373,10 +367,8 @@ export class SlkTableComponent<T> implements AfterContentChecked, CollectionView
     /** Update the map containing the content's column definitions. */
     private _cacheColumnDefs() {
         this._columnDefsByName.clear();
-        // console.log('this._contentColumndefs', this._contentColumnDefs.toArray());
-        // console.log('this_customColumnDefs', this._customColumnDefs);
         const columnDefs = mergeQueryListAndSet(this._contentColumnDefs, this._customColumnDefs);
-        // console.log('columnDefs columnDefs', columnDefs);
+
         columnDefs.forEach(columnDef => {
             // if (this._columnDefsByName.has(columnDef.name)) {
             //     throw getTableDuplicateColumnNameError(columnDef.name);
@@ -393,7 +385,6 @@ export class SlkTableComponent<T> implements AfterContentChecked, CollectionView
             mergeQueryListAndSet(this._contentFooterRowDefs, this._customFooterRowDefs);
         this._rowDefs =
             mergeQueryListAndSet(this._contentRowDefs, this._customRowDefs);
-        // console.log('this._headerRows', this._headerRowDefs);
         // After all row definitions are determined, find the row definition to be considered default.
         const defaultRowDefs = this._rowDefs.filter(def => !def.when);
         // if (defaultRowDefs.length > 1) {

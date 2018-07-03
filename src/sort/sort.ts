@@ -24,6 +24,7 @@ export interface Sort {
     active: string;
     /** The Sort Direction */
     direction: SortDirection;
+    initial: boolean;
 }
 
 /** Container for SlkSortables to manage the sort state and provide default sort paramters. */
@@ -70,14 +71,19 @@ export class SlkSortDirective implements OnChanges, OnDestroy, OnInit {
     }
     /** Sets the active sort id and determines the new sort direction. */
     sort(sortable: SlkSortable): void {
-        // console.log('slk', sortable);
+        let initial = true;
         if (this.active !== sortable.id) {
+            initial = false;
             this.active = sortable.id;
             this.direction = sortable.start ? sortable.start : this.start;
         } else {
             this.direction = this.getNextSortDirection(sortable);
         }
-        this.slkSortChange.emit({ active: this.active, direction: this.direction });
+        this.slkSortChange.emit({
+            active: this.active,
+            direction: this.direction,
+            initial: initial
+        });
     }
     /** Returns the next sort direction of the active sortable. */
     getNextSortDirection(sortable: SlkSortable): SortDirection {
