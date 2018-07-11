@@ -1,6 +1,6 @@
 {
   "rulesDirectory": [
-      "node_modules/codelyzer"
+    "node_modules/codelyzer"
   ],
   "rules": {
     "arrow-return-shorthand": true,
@@ -107,17 +107,29 @@
     ],
     "directive-selector": [
       true,
-      "attribute",
+      [
+        "element",
+        "attribute"
+      ],
       "slk",
-      "camelCase"
+      [
+        "camelCase",
+        "kebab-case"
+      ]
     ],
     "component-selector": [
       true,
-      ["element", "attribute"],
+      [
+        "element",
+        "attribute"
+      ],
       "slk",
-      "kebab-case"
+      [
+        "camelCase",
+        "kebab-case"
+      ]
     ],
-    "use-input-property-decorator": true,
+    "use-input-property-decorator": false,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
     "no-input-rename": false,

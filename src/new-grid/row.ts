@@ -125,13 +125,10 @@ export class SlkFooterRowDefDirective extends BaseRowDef implements OnChanges {
 
 function extractCellTemp(that: any, column: any): TemplateRef<any> {
     if (that instanceof SlkHeaderRowDefDirective) {
-        // console.log('1st');
         return column.headerCell.template;
     } if (that instanceof SlkFooterRowDefDirective) {
-        // console.log('2nd');
         return column.footerCell.template;
     } else {
-        // console.log('3rd');
         return column.cell.template;
     }
 }

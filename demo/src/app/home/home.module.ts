@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {  LibModule  } from 'ngx-sleek';
+import {  SlkGridModule, SlkSortModule  } from 'ngx-sleek';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -8,9 +8,10 @@ import { HomeComponent } from './home.component';
 @NgModule({
     imports: [
         CommonModule,
-        LibModule.forRoot(),
+        // SlkGridModule.forRoot(),
         HomeRoutingModule,
-        LibModule
+        SlkGridModule,
+        SlkSortModule
     ],
     declarations: [HomeComponent],
 })

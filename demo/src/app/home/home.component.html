@@ -1,55 +1,60 @@
-<!-- <section class="home">
-  <div class="container">
-		<slk-grid
-		  [dataSource]="dataSource"
-          [searchRequired]="searchRequired"
-          [columns]="columns" 
-          [pagination]="pagination"
-          [rowsPerPage]="rowsPerPage"
-          [clientRendering]="clientRendering"
-          [rowClickable]="rowClickable"
-          (rowClick)="onRowClick($event)"
-          [sort]="sort"
-          [sortColumns]="sortColumns"
-          (sortEvent)="onSort($event)">
-
-		</slk-grid>
-  </div>
-</section> -->
-
 <section class="home">
 
   <div class="container">
 
-    <table slk-table [dataSource]="dataSource">
+    <table slk-table [dataSource]="dataSource" slkSort (slkSortChange)="test($event)">
 
-      <ng-container slkColumnDef="username">
+      <ng-container slkColumnDef="FIRST_NAME">
 
-        <th *slkHeaderCellDef>User Name</th>
+        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>FIRST_NAME</th>
 
-        <td *slkCellDef="let row">{{ row.username }}</td>
-
-      </ng-container>
-
-      <ng-container slkColumnDef="lastname">
-
-        <th *slkHeaderCellDef>Last Name</th>
-
-        <td *slkCellDef="let row">{{ row.lastname }}</td>
+        <td slkCell *slkCellDef="let row">{{ row.FIRST_NAME }}</td>
 
       </ng-container>
 
-      <ng-container slkColumnDef="password">
+      <ng-container slkColumnDef="LAST_NAME">
 
-        <th *slkHeaderCellDef>Pwd</th>
+        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>Last Name</th>
 
-        <td *slkCellDef="let row">{{ row.password }}</td>
+        <td slkCell *slkCellDef="let row">{{ row.LAST_NAME }}</td>
 
       </ng-container>
 
-      <tr slk-header-row *slkHeaderRowDef="['username', 'lastname', 'password']"></tr>
+      <ng-container slkColumnDef="EMAIL">
 
-      <tr slk-row *slkRowDef="let row: columns: ['username', 'lastname', 'password']"></tr>
+        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>Email</th>
+
+        <td slkCell *slkCellDef="let row">{{ row.EMAIL }}</td>
+
+      </ng-container>
+
+      <ng-container slkColumnDef="PASSWORDS">
+
+        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>PASSWORDS</th>
+
+        <td slkCell *slkCellDef="let row">{{ row.PASSWORDS }}</td>
+
+      </ng-container>
+
+      <ng-container slkColumnDef="ROLES">
+
+        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>ROLES</th>
+
+        <td slkCell *slkCellDef="let row">{{ row.ROLES }}</td>
+
+      </ng-container>
+
+      <ng-container slkColumnDef="LOCATIONS">
+
+        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>LOCATIONS</th>
+
+        <td slkCell *slkCellDef="let row">{{ row.LOCATIONS }}</td>
+
+      </ng-container>
+
+      <tr slk-header-row *slkHeaderRowDef="columns"></tr>
+
+      <tr slk-row *slkRowDef="let row: columns: columns"></tr>
 
     </table>
 

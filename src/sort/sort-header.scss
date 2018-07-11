@@ -9,6 +9,7 @@ $slk-sort-header-pointer-container-size: 12px;
 }
 
 .slk-sort-header-button {
+    margin: auto;
     border: none;
     background: 0 0;
     display: flex;
@@ -27,11 +28,28 @@ $slk-sort-header-pointer-container-size: 12px;
     display: flex;
 }
 
-.slk-sort-header-pointer-design {
-    background: currentColor;
-    height: 10px;
-    width: 2px;
+.slk-sort-header-pointer-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #555;
     margin: auto;
     display: flex;
     align-items: center;
+}
+
+.slk-sort-header-pointer-up {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid black;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.sort-header-wrapper {
+    align-content: center;
 }

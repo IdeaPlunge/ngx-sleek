@@ -1,0 +1,40 @@
+<div class="tree-wrapper">
+    <div fxFlexFill fxLayoutAlign="center center">
+
+        <div class="tree-wrapper" [class.mat-elevation-z2]="true">
+      
+          <div class="another-wrapper-for-padding">
+    
+            <slk-tree [dataSource]="dataSource" [treeControl]="nestedTreeControl">
+              
+              <slk-nested-tree-node 
+              *slkTreeNodeDef="let node;" 
+              class="tree-node">
+           
+                <slk-tree-nest-text>
+                  <p>{{node.filename}}: {{node.type}}</p>
+                </slk-tree-nest-text>
+      
+              </slk-nested-tree-node>
+      
+              <slk-nested-tree-node 
+              *slkTreeNodeDef="let node; when: hasNestedChild;">
+      
+                <slk-tree-nest-text>
+                  <p>{{node.filename}}: {{node.type}}</p>
+                </slk-tree-nest-text>
+            
+                <div>
+                  <ng-container slkTreeNodeOutlet></ng-container>
+                </div>
+      
+              </slk-nested-tree-node>
+      
+            </slk-tree>
+      
+          </div>
+      
+        </div>
+      
+      </div>
+</div>

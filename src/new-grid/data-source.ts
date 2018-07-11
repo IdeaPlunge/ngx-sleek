@@ -31,7 +31,6 @@ export class SlkGridDataSource<T> extends DataSource<T> {
      */
     get sort(): SlkSortDirective | null { return this._sort; }
     set sort(sort: SlkSortDirective | null) {
-        // console.log('_sort test', sort);
         this._sort = sort;
         this._updateChangeSubscription();
     }
@@ -43,7 +42,6 @@ export class SlkGridDataSource<T> extends DataSource<T> {
     sortData: (
         (data: T[], sort: SlkSortDirective, initial: boolean) => T[]
     ) = (data: T[], sort: SlkSortDirective, initial: boolean): T[] => {
-        // console.log('data from sort data function', data);
         const active = sort.active;
         const direction = sort.direction;
 
@@ -73,7 +71,7 @@ export class SlkGridDataSource<T> extends DataSource<T> {
         const sortChange: Observable<Sort | null> = this._sort ?
             merge<Sort>(this._sort.slkSortChange, this._sort.initialised) :
             observableOf(null);
-        // sortChange.subscribe(t => { console.log('t', t); });
+
         const dataStream = this._data;
         // Watch for sort changes to provide ordered data
         const orderedData = combineLatest(dataStream, sortChange)
@@ -88,7 +86,6 @@ export class SlkGridDataSource<T> extends DataSource<T> {
      * data array as provided.
      */
     _orderData(data: T[]): T[] {
-        // console.log('order data', this.sort);
         // If there is no active sort or direction then return data.
         if (!this.sort) { return data; }
         return this.sortData(data.slice(), this.sort, false);

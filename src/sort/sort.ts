@@ -9,6 +9,7 @@ import {
     Output
 } from '@angular/core';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
+import { SortDirectiveService } from './sort-directive.service';
 
 /** Interface for directive that holds sorting state consumed by SlkSortHeader */
 export interface SlkSortable {
@@ -55,6 +56,8 @@ export class SlkSortDirective implements OnChanges, OnDestroy, OnInit {
     private _direction: SortDirection = '';
     /** Event emiited when the user changes either the active sort or sort direction. */
     @Output('slkSortChange') readonly slkSortChange: EventEmitter<Sort> = new EventEmitter<Sort>();
+
+    constructor(private sortDirService: SortDirectiveService) { }
     /**
      * Register function to be used by the contained SlkSortables. Adds the SlkSortable to
      * the collection of SlkSortables.
@@ -79,6 +82,7 @@ export class SlkSortDirective implements OnChanges, OnDestroy, OnInit {
         } else {
             this.direction = this.getNextSortDirection(sortable);
         }
+        this.sortDirService.catchFinalDir(this.direction);
         this.slkSortChange.emit({
             active: this.active,
             direction: this.direction,

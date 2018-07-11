@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppSharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { AppComponent } from './app.component';
+import { GettingStartedModule } from './getting-started/getting-started.module';
+import { TreeModule } from './tree/tree-module';
 
 @NgModule({
     declarations: [
@@ -24,7 +26,9 @@ import { AppComponent } from './app.component';
         HttpModule,
         AppRoutingModule,
         AppSharedModule,
-        HomeModule
+        GettingStartedModule,
+        HomeModule,
+        TreeModule
     ],
     providers: [],
     bootstrap: [AppComponent]

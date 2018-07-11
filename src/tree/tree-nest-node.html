@@ -1,0 +1,29 @@
+<div class="tree-node-wrapper" slkAction draggable="true" (dragstart)="drag($event)">
+
+    <!-- <ng-container *slkContentAction="isAction; else noAction">
+        <input type="text">
+    </ng-container>
+
+    <ng-template #noAction>
+        <ng-content></ng-content>
+    </ng-template> -->
+
+    <ng-content></ng-content>
+
+    <div class="actions" [style.visibility]="'hidden'">
+
+        <div (click)="onAdd()">
+            <div class="icon icon-plus"></div>
+        </div>
+
+        <div (click)="onDestroy()">
+            <div class="trash icon"></div>
+        </div>
+
+        <div (click)="onEdit()">
+            <div class="edit icon"></div>
+        </div>
+
+    </div>
+
+</div>
