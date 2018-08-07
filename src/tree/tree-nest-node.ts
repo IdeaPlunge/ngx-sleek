@@ -12,7 +12,7 @@ import {
     EmbeddedViewRef,
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ActionsService, viewRefKey, viewRefContainer } from './tree-service';
+import { ActionsService, viewRefKey, viewRefContainer, dataNode } from './tree-service';
 import { takeUntil } from 'rxjs/operators';
 import { SlkTreeTextOutletDirective } from './tree-nest-outlet';
 import { SlkNestedTreeNodeDirective } from './nested-node';
@@ -46,6 +46,9 @@ export class SlkTreeNodeTextComponent<T>
 
     isExpandable = (node: any) => node.expandable;
 
+    expand: boolean;
+    collapse = false;
+
     constructor(
         private actionService: ActionsService,
         public nestedNode: SlkNestedTreeNodeDirective<T>,
@@ -62,11 +65,30 @@ export class SlkTreeNodeTextComponent<T>
             .subscribe(result => {
                 this.isAction = result;
             });
+
+        if (this.data && this.data.hasOwnProperty('children')) {
+            this.expand = true;
+        } else {
+            this.expand = false;
+        }
     }
 
     ngOnDestroy() {
         this._onDestroy.next();
         this._onDestroy.complete();
+    }
+
+    onToggle() {
+        this.treeComponent.treeControl.toggle(this.data);
+        this.actionService.set(dataNode, this.data);
+        // console.log('this.toggle', this.toggleDirective);
+        if (this.data && this.data.hasOwnProperty('children')) {
+            this.expand = false;
+            this.collapse = true;
+        } else {
+            this.expand = false;
+            this.collapse = false;
+        }
     }
 
     onAdd(node: any = this.data) {

@@ -1,12 +1,17 @@
 <section class="home">
 
-  <div class="container">
+  <div class="container" *ngIf="expression">
+    <!-- {{ dataSource.data | json }} -->
+    <!-- <table slk-table [dataSource]="dataSource" slkSort (slkSortChange)="test($event)" (scrollToBottom)="scrolled($event)">  -->
+    <table slk-table [dataSource]="dataSource" (scrollToBottom)="scrolled($event)" [length]="totalLength" slkFilter slkRowSelect>
 
-    <table slk-table [dataSource]="dataSource" slkSort (slkSortChange)="test($event)">
 
       <ng-container slkColumnDef="FIRST_NAME">
 
-        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>FIRST_NAME</th>
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          FIRST_NAME
+        </th>
 
         <td slkCell *slkCellDef="let row">{{ row.FIRST_NAME }}</td>
 
@@ -14,7 +19,10 @@
 
       <ng-container slkColumnDef="LAST_NAME">
 
-        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>Last Name</th>
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          Last Name
+        </th>
 
         <td slkCell *slkCellDef="let row">{{ row.LAST_NAME }}</td>
 
@@ -22,7 +30,10 @@
 
       <ng-container slkColumnDef="EMAIL">
 
-        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>Email</th>
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          Email
+        </th>
 
         <td slkCell *slkCellDef="let row">{{ row.EMAIL }}</td>
 
@@ -30,7 +41,10 @@
 
       <ng-container slkColumnDef="PASSWORDS">
 
-        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>PASSWORDS</th>
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          PASSWORDS
+        </th>
 
         <td slkCell *slkCellDef="let row">{{ row.PASSWORDS }}</td>
 
@@ -38,7 +52,10 @@
 
       <ng-container slkColumnDef="ROLES">
 
-        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>ROLES</th>
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          ROLES
+        </th>
 
         <td slkCell *slkCellDef="let row">{{ row.ROLES }}</td>
 
@@ -46,10 +63,20 @@
 
       <ng-container slkColumnDef="LOCATIONS">
 
-        <th slkHeaderCell *slkHeaderCellDef slk-sort-header>LOCATIONS</th>
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          LOCATIONS
+        </th>
 
         <td slkCell *slkCellDef="let row">{{ row.LOCATIONS }}</td>
 
+      </ng-container>
+
+      <ng-container slkColumnDef="Row_Select">
+        <th *slkHeaderCellDef></th>
+        <td *slkCellDef="let element">
+          <slk-select-row (click)="onclick(element)"></slk-select-row>
+        </td>
       </ng-container>
 
       <tr slk-header-row *slkHeaderRowDef="columns"></tr>
@@ -57,6 +84,11 @@
       <tr slk-row *slkRowDef="let row: columns: columns"></tr>
 
     </table>
+
+    <!-- <slk-paginator
+      [length]="100"
+      [pageSize]="10">
+    </slk-paginator> -->
 
   </div>
 

@@ -1,14 +1,20 @@
-<div class="tree-node-wrapper" slkAction draggable="true" (dragstart)="drag($event)">
+<div class="tree-node-wrapper" appAction draggable="true" (dragstart)="drag($event)">
 
-    <!-- <ng-container *slkContentAction="isAction; else noAction">
-        <input type="text">
-    </ng-container>
+    <div class="toggle" (click)="onToggle()">
 
-    <ng-template #noAction>
-        <ng-content></ng-content>
-    </ng-template> -->
+        <i [ngClass]="{'expand' : expand, 'toggle-wrapper' : expand}"></i>
 
+        <i [ngClass]="{'collapse' : collapse, 'toggle-wrapper' : collapse}"></i>
+
+    </div>
+
+    <!-- <ng-container *appContentAction="isAction; else noAction"> -->
+    <!-- <input type="text"> -->
+    <!-- </ng-container> -->
+
+    <!-- <ng-template #noAction> -->
     <ng-content></ng-content>
+    <!-- </ng-template> -->
 
     <div class="actions" [style.visibility]="'hidden'">
 

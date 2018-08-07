@@ -6,13 +6,17 @@
     background: #fff;
     text-align: center;
     padding: 0;
-    height: 5vh;
+    min-height: 5vh;
+    overflow: hidden;
     margin: 0;
     padding: 0;
     border-bottom: 0.1vh solid #e2d9d9;
 }
 
 .table-slk-grid {
+    display: block;
+    table-layout: fixed;
+    height: 90%;
     width: 96%;
     margin: 2%;
     border-collapse: collapse;
@@ -20,7 +24,7 @@
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
     background-color: #f3f3f3;
     tbody {
-        height: 81vh;
+        height: calc(100% - 5vh);
         overflow-y: auto;
         width: 100%;
     }
@@ -34,13 +38,15 @@
     tbody {
         td {
             float: left;
-            // width: 33%;
+            // align-items: baseline;
+            vertical-align: bottom;
         }
     }
     thead {
         th {
             float: left;
-            // width: 33%;
+            // align-items: baseline;
+            vertical-align: bottom;
         }
     }
 }

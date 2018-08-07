@@ -14,6 +14,8 @@ export interface CacheContent {
 export const viewRefKey = 'view-ref';
 export const viewRefContainer = 'view-ref-container';
 
+export const dataNode = 'dataNode';
+
 @Injectable()
 export class ActionsService {
     private cache: Map<string, CacheContent> = new Map<string, CacheContent>();

@@ -5,7 +5,7 @@
       
           <div class="another-wrapper-for-padding">
     
-            <slk-tree [dataSource]="dataSource" [treeControl]="nestedTreeControl">
+            <slk-tree [dataSource]="dataSource" [treeControl]="nestedTreeControl" (reorderData)="reorderData($event)">
               
               <slk-nested-tree-node 
               *slkTreeNodeDef="let node;" 
@@ -24,7 +24,7 @@
                   <p>{{node.filename}}: {{node.type}}</p>
                 </slk-tree-nest-text>
             
-                <div>
+                <div [class.tree-invisible]="!nestedTreeControl.isExpanded(node)">
                   <ng-container slkTreeNodeOutlet></ng-container>
                 </div>
       

@@ -1,15 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { SlkGridDataSource, SlkSortDirective } from 'ngx-sleek';
+import {
+  SlkGridDataSource,
+  SlkSortDirective,
+  SlkPaginatorComponent,
+  SlkGridFilterDirective,
+  SlkRowSelectDirective
+} from 'ngx-sleek';
+import * as dummy from './dummy';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  expression = false;
 
   @ViewChild(SlkSortDirective) sort: SlkSortDirective;
+  // @ViewChild(SlkPaginatorComponent) paginator: SlkPaginatorComponent;
+  @ViewChild(SlkGridFilterDirective) filter: SlkGridFilterDirective;
+  @ViewChild(SlkRowSelectDirective) select: SlkRowSelectDirective;
 
   // the hard coded columns will be changed in future
   columns = [
@@ -25,80 +36,47 @@ export class HomeComponent implements OnInit {
   clientRendering = true;
 
   // dummy data for testing
-  // dataSource = new SlkGridDataSource();
-  dataSource: any;
+  // dataSource: any;
+  dataSource = new SlkGridDataSource();
+  totalLength: number;
 
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title) {
+    setTimeout(() => {
+
+    }, 10);
+  }
 
   ngOnInit() {
     this.titleService.setTitle('Home | ngx-sleek');
 
     // this.dataSource.sort = this.sort;
 
-    this.dataSource = [
-      {
-        FIRST_NAME: 'qZH5HQ',
-        LAST_NAME: 'Jyg9yO',
-        EMAIL: 'uTpGhX@5oCU.com',
-        PASSWORDS: '*********',
-        ROLES: 'ZcVvB',
-        LOCATIONS: 'ZcVvB'
-      },
-      {
-        FIRST_NAME: 'Z19Qyl',
-        LAST_NAME: 'Z4ow3z',
-        EMAIL: 'q8lIZx@JZ0f.com',
-        PASSWORDS: '*********',
-        ROLES: 'Cr1va',
-        LOCATIONS: 'LQh3p0QL'
-      },
-      {
-        FIRST_NAME: 'G600Te',
-        LAST_NAME: 'EBei4x',
-        EMAIL: 'btrHKq@NJO0.com',
-        PASSWORDS: '*********',
-        ROLES: '8q3TY',
-        LOCATIONS: 'xp68ffba'
-      },
-      {
-        FIRST_NAME: 'jkhqJE',
-        LAST_NAME: 'WdTswx',
-        EMAIL: 'WCraL0@hl5e.com',
-        PASSWORDS: '*********',
-        ROLES: 'GUMyu',
-        LOCATIONS: 'zWhNt9vi'
-      },
-      {
-        FIRST_NAME: '6EMEnx',
-        LAST_NAME: 'HiQU4H',
-        EMAIL: 'WPMh2j@ix4m.com',
-        PASSWORDS: '*********',
-        ROLES: 'YNETa',
-        LOCATIONS: 'gguvSzRs'
-      },
-      {
-        FIRST_NAME: 'DhqHOw',
-        LAST_NAME: 'tITkrr',
-        EMAIL: '2yyrvg@dxqv.com',
-        PASSWORDS: '*********',
-        ROLES: 'BGd2g',
-        LOCATIONS: 'nUuKu0Wx'
-      },
-      {
-        FIRST_NAME: 'RBtBr3',
-        LAST_NAME: 'YPolBr',
-        EMAIL: 'Q5Aal4@1a7q.com',
-        PASSWORDS: '*********',
-        ROLES: 'jt24C',
-        LOCATIONS: 'upzjq24G'
-      }
-    ];
+    this.dataSource.data = dummy.gridData;
+    this.expression = true;
+    // this.dataSource.filter = this.filter;
+    this.totalLength = dummy.gridData.length;
+    // console.log()
   }
 
   test(obj: any) {
     console.log('obj', obj);
   }
 
+  ngAfterViewInit() {
+    // this.dataSource.data = dummy.gridData;
+    // this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.data = dummy.gridData;
+    this.dataSource.filter = this.filter;
+    this.dataSource.select = this.select;
+  }
 
+  scrolled(event: any) {
+    console.log('$event', event);
+  }
+
+  onclick(element: any) {
+    console.log('element', element);
+  }
 
 }

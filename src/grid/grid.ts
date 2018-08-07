@@ -21,7 +21,9 @@ import {
     TrackByFunction,
     isDevMode,
     HostBinding,
-    Renderer2
+    Renderer2,
+    Output,
+    EventEmitter
 } from '@angular/core';
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 
@@ -112,6 +114,7 @@ export interface RenderRow<T> {
 export class SlkTableComponent<T> implements AfterContentChecked, CollectionViewer, OnDestroy, OnInit {
     /** Latest data provided by the data source. */
     protected _data: T[];
+    public copyOfData: T[];
 
     /** Subject that emits when the component has been destoryed. */
     private _onDestroy = new Subject<void>();
@@ -182,6 +185,19 @@ export class SlkTableComponent<T> implements AfterContentChecked, CollectionView
      * built-in footer row as *it's* content child.
      */
     private _customFooterRowDefs = new Set<SlkFooterRowDefDirective>();
+
+    // TODO:- Later connect it with dataSource. After filter is implmented.
+    /** Page Index. */
+    pageIndex = 1;
+    /** Emits an event when scroll has reached the bottom. */
+    @Output('scrollToBottom') scrollToBottom: EventEmitter<any> = new EventEmitter<any>();
+    /** Gets the total number of rows that has to be displayed. */
+    @Input()
+    get length(): number { return this._length; }
+    set length(value: number) {
+        this._length = value;
+    }
+    private _length: number;
 
     /**
      * Tracking function that will be used to check the differences in data changes. Used similarly
@@ -324,6 +340,9 @@ export class SlkTableComponent<T> implements AfterContentChecked, CollectionView
                 } else {
                     const view = <RowViewRef<T>>viewContainer.get(prevIndex);
                     viewContainer.move(view, currentIndex);
+                }
+                if (currentIndex === this._data.length - 1) {
+                    this._addScrollEvent();
                 }
             });
     }
@@ -474,6 +493,7 @@ export class SlkTableComponent<T> implements AfterContentChecked, CollectionView
             .pipe(takeUntil(this._onDestroy))
             .subscribe((data: any) => {
                 this._data = data || [];
+                this.copyOfData = this._data.slice();
                 this.renderRows();
             });
     }
@@ -590,6 +610,41 @@ export class SlkTableComponent<T> implements AfterContentChecked, CollectionView
             const element = document.createElement(section.tag);
             element.appendChild(section.outlet.elementRef.nativeElement);
             this._elementRef.nativeElement.appendChild(element);
+        }
+    }
+    /**
+     * TODO: Move this to a new scroll module later.
+     * Adds a scroll event on the grid.
+     */
+    _addScrollEvent(): void {
+        const tbody = document.getElementsByTagName('tbody');
+        tbody[0].addEventListener('scroll', (event: UIEvent) => {
+            // Avoids scroll event to get fired twice.
+            event.stopImmediatePropagation();
+            this.onScroll(event);
+        });
+    }
+    // Later change the logic.
+    onScroll(event: any): void {
+        const tbodyViewHeight = event.target.offsetHeight;
+        const tbodyScrollHeight = event.target.scrollHeight;
+        const scrollLocation = event.target.scrollTop;
+        // If the user has scrolled to the bottom, send signal via output binding.
+        const limit = tbodyScrollHeight - tbodyViewHeight;
+
+        // get total pages.
+        const totalPages = this.length / this._data.length;
+
+        if (scrollLocation === limit) {
+            this.pageIndex++;
+            if (totalPages >= this.pageIndex) {
+                this.scrollToBottom.emit({
+                    pageIndex: this.pageIndex,
+                    totalRows: this._length
+                });
+            } else {
+                return;
+            }
         }
     }
 

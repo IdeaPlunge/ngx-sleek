@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SlkSortDirective } from './sort';
 import { SlkSortHeaderComponent } from './sort-header';
@@ -11,4 +11,10 @@ import { SortDirectiveService } from './sort-directive.service';
     providers: [SortDirectiveService]
 })
 
-export class SlkSortModule { }
+export class SlkSortModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: SlkSortModule
+        };
+    }
+}

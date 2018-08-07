@@ -1,8 +1,7 @@
-<div class="slk-sort-header-container"
-    [class.slk-sort-header-sorted]="_isSorted()"
-    [class.slk-sort-header-position-before]="pointerPosition === 'before'">
+<div class="slk-sort-header-container">
 
-    <button class="slk-sort-header-button" type="button"> 
+    <button (click)="onSort()" class="slk-sort-header-button" type="button"> 
+
         <ng-content></ng-content>
 
         <div class="slk-sort-header-pointer">
@@ -12,9 +11,8 @@
         </div>
     </button>
 
-    <!-- <div class="slk-sort-header-pointer">
-        <div class="slk-sort-header-pointer-design">
-            
-        </div>
-    </div> -->
+    <div class="filter-header-wrapper">
+        <ng-content select="slk-filter-header"></ng-content>
+    </div>
+    
 </div>

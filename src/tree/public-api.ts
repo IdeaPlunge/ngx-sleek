@@ -7,4 +7,6 @@ export * from './node';
 export * from './node-directive';
 export * from './tree-nest-outlet';
 export * from './tree-nest-node';
+export * from './tree-service';
+
 

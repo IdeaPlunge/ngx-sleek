@@ -107,5 +107,9 @@ export class TreeComponent implements AfterViewInit {
         return observableOf(node.children);
     }
 
+    reorderData(event: any) {
+        // console.log('event', event);
+    }
+
     ngAfterViewInit() { }
 }

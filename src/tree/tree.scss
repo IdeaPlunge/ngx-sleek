@@ -115,3 +115,28 @@
     border-top: solid 1px currentColor;
     border-radius: 4px 4px 0 0; // margin-bottom: 10px;
 }
+
+/** Toggle class */
+
+.toggle {
+    float: left;
+    padding-top: 15px;
+    margin-right: 10px;
+}
+
+.toggle-wrapper {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.expand {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.collapse {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}

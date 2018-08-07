@@ -1,0 +1,25 @@
+<div class="dropdown">
+
+    <div class="dropdown-button">
+        Please Select
+    </div>
+
+    <ul class="dropdown-selection">
+
+        <!-- later create these tags dynamically -->
+
+        <li class="container" *ngFor="let d of data;let i = index;">
+
+            <div class="checkmark">
+                <span>{{ d.name }}</span>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" [checked]="d.checked" [value]="i" (input)="onInputChange($event.target.value)">
+            </div>
+
+        </li>
+
+    </ul>
+
+</div>

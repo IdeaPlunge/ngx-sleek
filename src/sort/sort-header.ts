@@ -5,13 +5,10 @@ import {
     OnDestroy,
     OnInit,
     Input,
-    // ChangeDetectorRef,
     Optional,
-    HostListener,
     Renderer2
 } from '@angular/core';
-import { Subscription, merge } from 'rxjs';
-import { SlkColumnDefDirective } from '../new-grid';
+import { SlkColumnDefDirective } from '../grid';
 import { SlkSortDirective } from './sort';
 import { take } from 'rxjs/operators';
 import { SortDirectiveService } from './sort-directive.service';
@@ -29,7 +26,6 @@ export type SortDirection = 'asc' | 'desc' | '';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SlkSortHeaderComponent implements OnDestroy, OnInit {
-    private _rerenderSubscription: Subscription;
     /** The direction the pointer should face as per sorted direction */
     pointerDirection: SortDirection;
 
@@ -49,7 +45,6 @@ export class SlkSortHeaderComponent implements OnDestroy, OnInit {
     ) { }
 
     /** Click event. When clicked will sort the data passing reference of this component to sort directive. */
-    @HostListener('click', ['$event'])
     onSort() {
         this._sort.sort(this);
 

@@ -1,0 +1,16 @@
+<slk-paginator-child 
+    [length]="_length" 
+    [pageSize]="_pageSize">
+
+    <ng-container *slkPageIndex="let item">
+
+        <button 
+            [disabled]="item.disabled"
+            class="page-controller" 
+            (click)="onPaged(item.index, item.page)">
+            {{ item.page }}
+        </button>
+
+    </ng-container>
+
+</slk-paginator-child>

@@ -1,28 +1,62 @@
-import { CommonModule } from '@angular/common';
+import {
+    SlkTableComponent,
+    DataRowOutletDirective,
+    HeaderRowOutletDirective,
+    FooterRowOutletDirective
+} from './grid';
+import {
+    SlkRowDefDirective,
+    SlkCellOutletDirective,
+    SlkRowComponent,
+    SlkHeaderRowComponent,
+    SlkHeaderRowDefDirective,
+    SlkFooterRowComponent,
+    SlkFooterRowDefDirective
+} from './row';
+import {
+    SlkCellDefDirective,
+    SlkHeaderCellDefDirective,
+    SlkFooterCellDefDirective,
+    SlkColumnDefDirective,
+    SlkCellDirective,
+    SlkHeaderCellDirective,
+    SlkFooterCellDirective
+} from './cell';
 import { NgModule, ModuleWithProviders } from '@angular/core';
-// import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { DirectiveService } from './directive-service';
 
-// Export module's public API
-import { NgxGridComponent } from './grid.component';
-import { NgxGridService } from './grid.service';
+const EXPORTED_DECLARATIONS = [
+    SlkTableComponent,
+    SlkRowDefDirective,
+    SlkCellDefDirective,
+    SlkCellOutletDirective,
+    SlkHeaderCellDefDirective,
+    SlkFooterCellDefDirective,
+    SlkColumnDefDirective,
+    SlkCellDirective,
+    SlkRowComponent,
+    SlkHeaderCellDirective,
+    SlkFooterCellDirective,
+    SlkHeaderRowComponent,
+    SlkHeaderRowDefDirective,
+    SlkFooterRowComponent,
+    SlkFooterRowDefDirective,
+    DataRowOutletDirective,
+    HeaderRowOutletDirective,
+    FooterRowOutletDirective,
+];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    // FormsModule
-  ],
-  exports: [
-    NgxGridComponent
-  ],
-  declarations: [
-    NgxGridComponent
-  ]
+    imports: [CommonModule],
+    exports: EXPORTED_DECLARATIONS,
+    declarations: EXPORTED_DECLARATIONS,
+    providers: [DirectiveService]
 })
-export class GridModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: GridModule,
-      providers: [NgxGridService]
-    };
-  }
+export class SlkGridModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: SlkGridModule
+        }
+    }
 }

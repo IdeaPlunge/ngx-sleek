@@ -9,7 +9,7 @@ $slk-sort-header-pointer-container-size: 12px;
 }
 
 .slk-sort-header-button {
-    margin: auto;
+    margin: auto !important;
     border: none;
     background: 0 0;
     display: flex;
@@ -52,4 +52,8 @@ $slk-sort-header-pointer-container-size: 12px;
 
 .sort-header-wrapper {
     align-content: center;
+}
+
+.filter-header-wrapper {
+    // padding-left: 5px;
 }

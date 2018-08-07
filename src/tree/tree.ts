@@ -17,6 +17,8 @@ import {
     QueryList,
     HostBinding,
     EmbeddedViewRef,
+    EventEmitter,
+    Output
 } from '@angular/core';
 import { Subject, Observable, of as observableOf, Subscription, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -83,6 +85,9 @@ export class SlkTreeComponent<T> implements
      * Tracking function will be used to check differences in data changes.
      */
     @Input() trackBy: TrackByFunction<T>;
+
+    /** Sends the re-ordered array on drop. */
+    @Output('reorderData') reorderData: EventEmitter<any> = new EventEmitter();
 
     // @ViewChildren(SlkNestedTreeNodeDirective) public nestedTreeNode: SlkNestedTreeNodeDirective<T>;
 
@@ -241,6 +246,11 @@ export class SlkTreeComponent<T> implements
             SlkTreeTextOutletDirective.mostRecentTreeTextOutlet.data = nodeData;
             SlkTreeTextOutletDirective.mostRecentTreeTextOutlet.context = this.embeddedViewRef.context;
         }
+    }
+
+    /** Emits a event for re ordered data. */
+    public reorderedData(data: any[]) {
+        this.reorderData.emit(data);
     }
 }
 

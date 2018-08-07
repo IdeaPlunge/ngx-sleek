@@ -17,6 +17,8 @@ import {
 } from '@angular/core';
 import { SlkColumnDefDirective, SlkCellDef } from './cell';
 import { DirectiveService } from './directive-service';
+import { take } from 'rxjs/operators';
+import { RowSelectService } from '../row-select/row-select.service';
 
 /**
  * The row template that can be used by the slk-table.
@@ -36,7 +38,7 @@ export abstract class BaseRowDef implements OnChanges {
 
     constructor(
         public template: TemplateRef<any>,
-        protected _differs: IterableDiffers
+        protected _differs: IterableDiffers,
     ) { }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -84,7 +86,8 @@ export class SlkHeaderRowDefDirective extends SlkHeaderRowDefBase implements OnC
     constructor(
         template: TemplateRef<any>,
         _differs: IterableDiffers,
-        private directiveService: DirectiveService
+        private directiveService: DirectiveService,
+        private rowSelectService: RowSelectService
     ) {
         super(template, _differs);
         // console.log('appHeaderRowDef', this.appHeaderRowDef);
@@ -94,7 +97,18 @@ export class SlkHeaderRowDefDirective extends SlkHeaderRowDefBase implements OnC
     // Explicitly define it so that the method is called as part of the Angular lifecycle.
     ngOnChanges(changes: SimpleChanges): void {
         super.ngOnChanges(changes);
-        this.columns = this.slkHeaderRowDef;
+        // this.columns = this.slkHeaderRowDef;
+
+        this.rowSelectService.init
+            .pipe(take(1))
+            .subscribe((initialised: boolean) => {
+                if (initialised) {
+                    this.slkHeaderRowDef.push('Row_Select');
+                    this.columns = this.slkHeaderRowDef;
+                } else {
+                    this.columns = this.slkHeaderRowDef;
+                }
+            });
     }
 
     ngOnInit() {

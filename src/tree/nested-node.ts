@@ -125,9 +125,12 @@ export class SlkNestedTreeNodeDirective<T>
 
     /** Embeds a view at the drop point */
     protected _embedView(context: any, containerRef: any): void {
-        let containerRefToEmbed: ViewContainerRef;
+        /** Finds the dropped container view ref from the collected embedded view ref. */
+        let containerRefToEmbed: any;
         for (let i = 0; i < this._tree.viewContainerRef.length; i++) {
+            // Check for the embedded view ref inside the array to match with context
             for (let j = 0; j < this._tree.viewContainerRef[i]._embeddedViews.length; j++) {
+                // test purpose remove it later
                 if (this._tree.viewContainerRef[i]._embeddedViews[j].context ===
                     containerRef.view.context) {
                     containerRefToEmbed = this._tree.viewContainerRef[i];
@@ -135,16 +138,26 @@ export class SlkNestedTreeNodeDirective<T>
                 }
             }
         }
-        let currentViewRef: EmbeddedViewRef<any> | null = null;
+        /** Finds the dropped view ref. */
+        let droppedViewRef: EmbeddedViewRef<any>;
+        for (let i = 0; i < this._tree.cacheEmbeddedViewRef.length; i++) {
+            if (this._tree.cacheEmbeddedViewRef[i].context === containerRef.view.context) {
+                droppedViewRef = this._tree.cacheEmbeddedViewRef[i];
+            }
+        }
+        /** Gets the view ref of the dragged object. */
         this.actionService.get(viewRefKey)
             .pipe(takeUntil(this._destroyed))
             .subscribe((_viewRef: EmbeddedViewRef<any>) => {
-                currentViewRef = _viewRef;
-                this._droppedViewRef = _viewRef;
-                /** Inserts the view ref into the view container ref of drop point. */
-                containerRefToEmbed.insert(this._droppedViewRef);
+                // Get index of dropped view ref
+                const index = containerRefToEmbed.indexOf(droppedViewRef);
+                /** Moves the view ref into the view container ref of drop point. */
+                containerRefToEmbed.move(_viewRef, index);
+                /** Emits a event for re ordered data. */
+                this.reorderData(containerRefToEmbed._embeddedViews);
             });
     }
+
     /** Removes the view from the drag point */
     protected _removeView(): void {
         // let currentViewRef: EmbeddedViewRef<any>,
@@ -156,6 +169,16 @@ export class SlkNestedTreeNodeDirective<T>
                 const index = currentViewContainerRef.indexOf(this._droppedViewRef);
                 currentViewContainerRef.remove(index);
             });
+    }
+
+    /** Sends data back to the user to re order the data. */
+    private reorderData(viewRef: EmbeddedViewRef<any>[]) {
+        const _reorderData = [];
+        for (let i = 0; i < viewRef.length; i++) {
+            _reorderData.push(viewRef[i].context.$implicit);
+        }
+        /** Sends a signal to tree component re order data method. */
+        this._tree.reorderedData(_reorderData);
     }
 
     /** Clear the children dataNodes */

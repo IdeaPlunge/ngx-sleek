@@ -9,7 +9,8 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DirectiveService } from './directive-service';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, take } from 'rxjs/operators';
+import { RowSelectService } from '../row-select/row-select.service';
 
 /** Base interface for a cell definition. */
 export interface SlkCellDef {
@@ -89,7 +90,8 @@ export class SlkHeaderCellDirective extends BaseSlkCell implements OnInit {
         columnDef: SlkColumnDefDirective,
         private elementRef: ElementRef,
         private directiveService: DirectiveService,
-        private renderer: Renderer2
+        private renderer: Renderer2,
+        private rowSelectService: RowSelectService
     ) {
         super(columnDef, elementRef);
     }
@@ -98,9 +100,19 @@ export class SlkHeaderCellDirective extends BaseSlkCell implements OnInit {
         this.directiveService.totalColumnsAsObservable
             .pipe(takeUntil(this.destroy))
             .subscribe((cols: number) => {
-                const totalColumns = 100 / cols;
-                this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${totalColumns}%`);
-                this.destroy.next(true);
+                this.rowSelectService.init
+                    .pipe(take(1))
+                    .subscribe((init: boolean) => {
+                        if (init) {
+                            const totalColumns = 98 / (cols - 1);
+                            this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${totalColumns}%`);
+                            this.destroy.next(true);
+                        } else {
+                            const totalColumns = 100 / cols;
+                            this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${totalColumns}%`);
+                            this.destroy.next(true);
+                        }
+                    });
             });
 
     }
@@ -126,7 +138,8 @@ export class SlkCellDirective extends BaseSlkCell implements OnInit {
         columnDef: SlkColumnDefDirective,
         private elementRef: ElementRef,
         private directiveService: DirectiveService,
-        private renderer: Renderer2
+        private renderer: Renderer2,
+        private rowSelectService: RowSelectService
     ) {
         super(columnDef, elementRef);
     }
@@ -135,9 +148,19 @@ export class SlkCellDirective extends BaseSlkCell implements OnInit {
         this.directiveService.totalColumnsAsObservable
             .pipe(takeUntil(this.destroy))
             .subscribe((cols: number) => {
-                const totalColumns = 100 / cols;
-                this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${totalColumns}%`);
-                this.destroy.next(true);
+                this.rowSelectService.init
+                    .pipe(take(1))
+                    .subscribe((init: boolean) => {
+                        if (init) {
+                            const totalColumns = 98 / (cols - 1);
+                            this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${totalColumns}%`);
+                            this.destroy.next(true);
+                        } else {
+                            const totalColumns = 100 / cols;
+                            this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${totalColumns}%`);
+                            this.destroy.next(true);
+                        }
+                    });
             });
 
     }
