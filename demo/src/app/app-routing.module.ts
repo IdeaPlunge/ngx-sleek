@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { TreeComponent } from './tree/tree';
 
 const routes: Routes = [
     {
@@ -9,7 +11,13 @@ const routes: Routes = [
     },
     {
         path: 'getting-started',
-        loadChildren: 'app/getting-started/getting-started.module#GettingStartedModule'
+        component: GettingStartedComponent
+        // loadChildren: 'app/getting-started/getting-started.module#GettingStartedModule'
+    },
+    {
+        path: 'tree',
+        component: TreeComponent
+        // loadChildren: 'app/getting-started/getting-started.module#GettingStartedModule'
     }
 ];
 

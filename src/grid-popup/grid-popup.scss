@@ -1,0 +1,76 @@
+.dropdown {
+    display: inline-block;
+    position: relative;
+    font-size: 16px;
+    font-family: "Arial"
+}
+
+.dropdown-button {
+    background: #3498db;
+    min-width: 100px;
+    color: #fff;
+    letter-spacing: 0.025rem;
+    box-sizing: border-box;
+    padding: 10px 30px 10px 20px;
+    position: relative;
+    cursor: pointer;
+    transition: background .3s ease;
+}
+
+.dropdown-button:hover {
+    background: #2980b9;
+    transition: background .3s ease;
+}
+
+.dropdown ul {
+    direction: ltr;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0px 2px 6px 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0;
+    margin-top: 2px;
+    top: 100%;
+    min-width: 100%;
+    max-height: 250px;
+    overflow: auto;
+}
+
+.dropdown li {
+    background: #fff;
+    padding: 8px 10px 8px 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background .2s ease;
+    overflow: hidden;
+}
+
+.dropdown li:hover {
+    background: #f6f6f6;
+    transition: background .2s ease;
+}
+
+.checkmark {
+    float: left;
+    height: 3vh;
+}
+
+.checkbox {
+    float: right;
+    width: 20%;
+    height: 3vh;
+}
+
+.container {
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container .checkbox input {
+    position: absolute;
+    cursor: pointer; // opacity: 0;
+}

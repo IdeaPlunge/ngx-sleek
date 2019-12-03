@@ -1,0 +1,18 @@
+<div class="slk-sort-header-container">
+
+    <button (click)="onSort()" class="slk-sort-header-button" type="button"> 
+
+        <ng-content></ng-content>
+
+        <div class="slk-sort-header-pointer">
+            <div #sortBtn class="slk-sort-header-pointer-design">
+                
+            </div>
+        </div>
+    </button>
+
+    <div class="filter-header-wrapper">
+        <ng-content select="slk-filter-header"></ng-content>
+    </div>
+    
+</div>

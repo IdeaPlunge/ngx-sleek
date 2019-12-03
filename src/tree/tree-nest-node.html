@@ -1,0 +1,35 @@
+<div class="tree-node-wrapper" appAction draggable="true" (dragstart)="drag($event)">
+
+    <div class="toggle" (click)="onToggle()">
+
+        <i [ngClass]="{'expand' : expand, 'toggle-wrapper' : expand}"></i>
+
+        <i [ngClass]="{'collapse' : collapse, 'toggle-wrapper' : collapse}"></i>
+
+    </div>
+
+    <!-- <ng-container *appContentAction="isAction; else noAction"> -->
+    <!-- <input type="text"> -->
+    <!-- </ng-container> -->
+
+    <!-- <ng-template #noAction> -->
+    <ng-content></ng-content>
+    <!-- </ng-template> -->
+
+    <div class="actions" [style.visibility]="'hidden'">
+
+        <div (click)="onAdd()">
+            <div class="icon icon-plus"></div>
+        </div>
+
+        <div (click)="onDestroy()">
+            <div class="trash icon"></div>
+        </div>
+
+        <div (click)="onEdit()">
+            <div class="edit icon"></div>
+        </div>
+
+    </div>
+
+</div>

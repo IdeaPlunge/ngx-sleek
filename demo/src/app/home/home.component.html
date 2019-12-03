@@ -1,28 +1,95 @@
-<div class="jumbotron jumbotron-fluid">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-4 d-flex justify-content-center justify-content-md-end">
-				<img src="assets/logo.svg" alt="ngx-sleek logo" class="logo">
-			</div>
-			<div class="col-sm-8 text-center text-md-left">
-				<h1>ngx-sleek</h1>
-				<p>Sleek Angular Components</p>
-				<p>Scroll down to see it in action!</p>
-				<p class="buttons">
-					<a class="btn btn-outline-primary btn-lg" href="https://github.com/ygchander/ngx-sleek" target="_blank"><i class="fa fa-github fa-lg"></i>  Code on Github</a>
-					<a class="btn btn-outline-primary btn-lg" href="doc/index.html" target="_blank"><i class="fa fa-book fa-lg"></i>  Documentation</a>
-        		</p>
-			</div>
-		</div>
-
-	</div>
-</div>
-
 <section class="home">
-  <div class="container">
-		<!-- put your content here-->
-		<p>Put your content here. Typically, examples of your library in action (directives, components...)</p>
-		<slk-grid></slk-grid>
-		<p>Happy ng-hacking!</p>
+
+  <div class="container" *ngIf="expression">
+    <!-- {{ dataSource.data | json }} -->
+    <!-- <table slk-table [dataSource]="dataSource" slkSort (slkSortChange)="test($event)" (scrollToBottom)="scrolled($event)">  -->
+    <table slk-table [dataSource]="dataSource" (scrollToBottom)="scrolled($event)" [length]="totalLength" slkFilter slkRowSelect>
+
+
+      <ng-container slkColumnDef="FIRST_NAME">
+
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          FIRST_NAME
+        </th>
+
+        <td slkCell *slkCellDef="let row">{{ row.FIRST_NAME }}</td>
+
+      </ng-container>
+
+      <ng-container slkColumnDef="LAST_NAME">
+
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          Last Name
+        </th>
+
+        <td slkCell *slkCellDef="let row">{{ row.LAST_NAME }}</td>
+
+      </ng-container>
+
+      <ng-container slkColumnDef="EMAIL">
+
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          Email
+        </th>
+
+        <td slkCell *slkCellDef="let row">{{ row.EMAIL }}</td>
+
+      </ng-container>
+
+      <ng-container slkColumnDef="PASSWORDS">
+
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          PASSWORDS
+        </th>
+
+        <td slkCell *slkCellDef="let row">{{ row.PASSWORDS }}</td>
+
+      </ng-container>
+
+      <ng-container slkColumnDef="ROLES">
+
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          ROLES
+        </th>
+
+        <td slkCell *slkCellDef="let row">{{ row.ROLES }}</td>
+
+      </ng-container>
+
+      <ng-container slkColumnDef="LOCATIONS">
+
+        <th slkHeaderCell *slkHeaderCellDef>
+          <slk-filter-header></slk-filter-header>
+          LOCATIONS
+        </th>
+
+        <td slkCell *slkCellDef="let row">{{ row.LOCATIONS }}</td>
+
+      </ng-container>
+
+      <ng-container slkColumnDef="Row_Select">
+        <th *slkHeaderCellDef></th>
+        <td *slkCellDef="let element">
+          <slk-select-row (click)="onclick(element)"></slk-select-row>
+        </td>
+      </ng-container>
+
+      <tr slk-header-row *slkHeaderRowDef="columns"></tr>
+
+      <tr slk-row *slkRowDef="let row: columns: columns"></tr>
+
+    </table>
+
+    <!-- <slk-paginator
+      [length]="100"
+      [pageSize]="10">
+    </slk-paginator> -->
+
   </div>
+
 </section>
