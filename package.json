@@ -28,7 +28,7 @@
   "dependencies": {
     "@angular/cdk": "^6.3.1",
     "@angular/common": "6.0.1",
-    "@angular/core": "6.0.1",
+    "@angular/core": "11.0.5",
     "rxjs": "^6.1.0"
   },
   "devDependencies": {
